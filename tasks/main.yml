@@ -1,0 +1,7 @@
+---
+
+- include: install.yml
+  tags: [packages, lxd]
+
+- include: containers.yml
+  tags: [lxd-containers, lxd]

@@ -1,0 +1,47 @@
+---
+lxd_apt_stable_repo: yes
+lxd_packages:
+  - lxd
+  - zfsutils-linux
+lxd_users: []
+
+#lxd init --preseed
+lxd_default_pool_size: 39GB
+lxd_default_pool_driver: zfs
+lxd_default_pool_zfs_acl: 'off' #posixacl, noacl, off
+lxd_default_pool_config:
+  size: '{{ lxd_default_pool_size }}'
+  source: /var/lib/lxd/disks/default.img
+  zfs.pool_name: default
+
+lxd_default_bridge_ipv4_address: 'auto'
+lxd_default_bridge_config:
+  ipv4.nat: 'true'
+  ipv4.address: '{{ lxd_default_bridge_ipv4_address }}'
+  ipv6.address: 'none'
+
+lxd_config_preseed: 'lxd.preseed.j2'
+lxd_config:
+  storage_pools:
+    - name: default
+      driver: '{{ lxd_default_pool_driver }}'
+      config: '{{ lxd_default_pool_config }}'
+  networks:
+    - name: lxdbr0
+      type: bridge
+      config: '{{ lxd_default_bridge_config }}'
+  profiles:
+    - name: default
+      devices:
+        eth0:
+          nictype: bridged
+          parent: lxdbr0
+          type: nic
+        root:
+          path: /
+          pool: default
+          type: disk
+
+lxd_prepend_dns: []
+
+lxd_containters: []

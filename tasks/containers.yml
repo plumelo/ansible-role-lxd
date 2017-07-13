@@ -1,4 +1,5 @@
 ---
+
 - name: Create containers
   lxd_container:
     name: '{{ item.name }}'
@@ -13,7 +14,7 @@
     timeout: '{{ item.timeout | default(600) }}'
     config: '{{ item.config | default(omit) }}'
     wait_for_ipv4_addresses: '{{ item.wait_for_ipv4_addresses | default(omit)}}'
-    devices: '{{ item.devices | default(omit) }}' 
+    devices: '{{ item.devices | default(omit) }}'
   become: '{{ item.become | default(omit) }}'
   become_user: '{{ item.become_user | default(omit) }}'
   with_items: '{{ lxd_containers }}'

@@ -1,6 +1,6 @@
 ---
 - name: Ensure APT LXD repository (stable)
-  apt_repository: repo="ppa:ubuntu-lxc/lxd-stable" update_cache="yes"
+  apt_repository: repo='ppa:ubuntu-lxc/lxd-stable' update_cache='yes'
   when: lxd_apt_stable_repo
 
 - name: Install LXD

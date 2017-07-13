@@ -1,11 +1,11 @@
 ---
 
 - name: Deploy LXD preseed
-  template: src="{{ lxd_config_preseed }}" dest="/root/lxd.preseed"
+  template: src="{{ lxd_config_preseed }}" dest="/tmp/lxd.preseed"
   register: lxd_preseed_status
 
 - name: Configure LXD
-  shell: cat /root/lxd.preseed | lxd init --preseed
+  shell: cat /tmp/lxd.preseed | lxd init --preseed
   args:
     executable: /bin/bash
   when: lxd_preseed_status.changed

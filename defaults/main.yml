@@ -5,7 +5,7 @@ lxd_packages:
   - zfsutils-linux
 lxd_users: []
 
-#lxd init --preseed
+#lxc init: default pool
 lxd_default_pool_size: 39GB
 lxd_default_pool_driver: zfs
 lxd_default_pool_zfs_acl: 'off' #posixacl, noacl, off
@@ -14,6 +14,7 @@ lxd_default_pool_config:
   source: /var/lib/lxd/disks/default.img
   zfs.pool_name: default
 
+#lxd init: default bridge
 lxd_default_bridge_ipv4_address: 'auto'
 lxd_default_bridge_config:
   ipv4.nat: 'true'
@@ -42,6 +43,7 @@ lxd_config:
           pool: default
           type: disk
 
+# Add DNS servers to dhcp
 lxd_prepend_dns: []
 
 lxd_containters: []

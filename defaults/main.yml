@@ -5,6 +5,8 @@ lxd_packages:
   - zfsutils-linux
 lxd_users: []
 
+lxd_init: yes
+
 #lxc init: default pool
 lxd_default_pool_size: 39GB
 lxd_default_pool_driver: zfs

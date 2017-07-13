@@ -2,6 +2,7 @@
 
 - name: Deploy LXD preseed
   template: src="{{ lxd_config_preseed }}" dest="/tmp/lxd.preseed"
+  when: lxd_init|default(False)
   register: lxd_preseed_status
 
 - name: Configure LXD

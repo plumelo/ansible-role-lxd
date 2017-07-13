@@ -1,7 +1,10 @@
 ---
 
 - include: install.yml
-  tags: [lxd, lxd-packages]
+  tags: [lxd, lxd-install]
+
+- include: configure.yml
+  tags: [lxd, lxd-configure]
 
 - include: containers.yml
   tags: [lxd, lxd-containers]

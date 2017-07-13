@@ -5,37 +5,8 @@
 
 - name: Install LXD
   package: name={{ item }} state=present
-  with_items: "{{ lxd_packages }}"
+  with_items: '{{ lxd_packages }}'
 
 - name: Add users to lxd group
   user: name={{ item }} groups=lxd append=yes
-  with_items: "{{ lxd_users }}"
-
-- name: Deploy LXD preseed
-  template: src="{{ lxd_config_preseed }}" dest="/root/lxd.preseed"
-  register: lxd_preseed_status
-
-- name: Configure LXD
-  shell: cat /root/lxd.preseed | lxd init --preseed
-  args:
-    executable: /bin/bash
-  when: lxd_preseed_status.changed
-
-- name: Add LXD DNS to dhcp
-  blockinfile:
-    dest: /etc/dhcp/dhclient.conf
-    backup: yes
-    block: 'prepend domain-name-servers {{ item }};'
-    marker: '#{mark} LXD DNS'
-  with_items: '{{ lxd_prepend_dns }}'
-  notify: restart networking
-
-- name: Get acl status for default pool
-  shell: zfs get acltype default | grep default | awk '{print $3}'
-  when: lxd_default_pool_driver == 'zfs'
-  register: lxd_zfs_acl_status
-  changed_when: lxd_zfs_acl_status.stdout != lxd_default_pool_zfs_acl
-
-- name: Set acltype for default pool
-  shell: 'zfs set acltype={{ lxd_default_pool_zfs_acl }} default'
-  when: lxd_zfs_acl_status is defined and lxd_zfs_acl_status.changed
+  with_items: '{{ lxd_users }}'

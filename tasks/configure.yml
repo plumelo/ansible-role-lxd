@@ -11,6 +11,9 @@
     executable: /bin/bash
   when: lxd_preseed_status.changed
 
+- name: Ensure LXD is started
+  service: name=lxd state=started
+
 - name: Add LXD DNS to dhcp
   blockinfile:
     dest: /etc/dhcp/dhclient.conf

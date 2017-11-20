@@ -10,9 +10,8 @@
 - name: Add users to lxd group
   user: name={{ item }} groups=lxd append=yes
   with_items: '{{ lxd_users }}'
+  register: lxd_group_users_status
 
-- name: Init lxc per user
-  shell: newgrp lxd && lxc ls
-  changed_when: no
-  become: '{{ item }}'
-  with_items: '{{ lxd_users }}'
+- name: Reset connection if user added to group
+  when: lxd_group_users_status.changed
+  meta: reset_connection

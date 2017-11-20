@@ -11,7 +11,3 @@
   user: name={{ item }} groups=lxd append=yes
   with_items: '{{ lxd_users }}'
   register: lxd_group_users_status
-
-- name: Reset connection if user added to group
-  when: lxd_group_users_status.changed
-  meta: reset_connection

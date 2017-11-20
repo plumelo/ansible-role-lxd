@@ -10,3 +10,9 @@
 - name: Add users to lxd group
   user: name={{ item }} groups=lxd append=yes
   with_items: '{{ lxd_users }}'
+
+- name: Init lxc per user
+  shell: lxc ls
+  changed_when: no
+  become: '{{ item }}'
+  with_items: '{{ lxd_users }}'

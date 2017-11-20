@@ -12,7 +12,7 @@
   with_items: '{{ lxd_users }}'
 
 - name: Init lxc per user
-  shell: lxc ls
+  shell: newgrp lxd && lxc ls
   changed_when: no
   become: '{{ item }}'
   with_items: '{{ lxd_users }}'

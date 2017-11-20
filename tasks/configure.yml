@@ -11,13 +11,6 @@
     executable: /bin/bash
   when: lxd_preseed_status.changed
 
-- name: Ensure LXD is started
-  shell: sudo lxd waitready --timeout 60
-  args:
-    executable: /bin/bash
-  when: lxd_preseed_status.changed
-  changed_when: no
-
 - name: Add LXD DNS to dhcp
   blockinfile:
     dest: /etc/dhcp/dhclient.conf

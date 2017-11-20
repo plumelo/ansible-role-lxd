@@ -3,8 +3,3 @@
   service:
     name: networking
     state: restarted
-    
-- name: restart lxd
-  service:
-    name: lxd
-    state: restarted

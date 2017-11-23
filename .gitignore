@@ -1,0 +1,6 @@
+.vagrant/
+default.nix
+venv/
+test/roles/*
+*.retry
+

@@ -16,6 +16,6 @@
     wait_for_ipv4_addresses: '{{ item.wait_for_ipv4_addresses | default(omit)}}'
     devices: '{{ item.devices | default(omit) }}'
   become: '{{ item.become | default(omit) }}'
-  become_user: '{{ item.become_user | default(omit) }}'
   become_method: '{{ item.become_method | default(omit) }}'
+  become_user: '{{ item.become_user | default(omit) }}'
   with_items: '{{ lxd_containers }}'

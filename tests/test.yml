@@ -21,7 +21,7 @@
         - name: xenial
           state: started
           become: True
-          become_method: su
+          become_method: sudo
           become_user: travis
           alias: 'x'
           config:

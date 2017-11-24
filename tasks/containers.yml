@@ -1,7 +1,7 @@
 ---
 
 - name: Test lxd
-  shell: lxc list
+  shell: newgrp lxd | lxc list
   become: true
   become_method: su
   become_flags: '-l'

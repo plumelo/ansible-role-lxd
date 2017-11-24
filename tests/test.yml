@@ -20,7 +20,9 @@
       lxd_containers:
         - name: xenial
           state: started
-          become: no
+          become: yes
+          become_user: travis
+          become_method: su
           alias: 'x'
           config:
             user.user-data: "#cloud-config\n{{ cloud_config|combine({'hostname': 'xenial'})|to_yaml(indent=2) }}"

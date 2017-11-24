@@ -21,7 +21,7 @@
         - name: xenial
           state: started
           become: True
-          become_method: 'sudo su'
+          become_method: 'sudo'
           become_flags: '-s /bin/sh -c'
           become_user: travis
           alias: 'x'

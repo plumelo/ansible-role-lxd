@@ -22,7 +22,7 @@
           state: started
           become: True
           become_method: 'sudo'
-          become_flags: '-s /bin/sh -c'
+          become_flags: '-s /bin/sh'
           become_user: travis
           alias: 'x'
           config:

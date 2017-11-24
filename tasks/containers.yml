@@ -17,5 +17,6 @@
     devices: '{{ item.devices | default(omit) }}'
   become: '{{ item.become | default(omit) }}'
   become_method: '{{ item.become_method | default(omit) }}'
+  become_flags: '{{ item.become_flags | default(omit) }}'
   become_user: '{{ item.become_user | default(omit) }}'
   with_items: '{{ lxd_containers }}'

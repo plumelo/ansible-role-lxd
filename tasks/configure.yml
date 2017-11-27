@@ -29,10 +29,3 @@
 - name: Set acltype for default pool
   shell: 'zfs set acltype={{ lxd_default_pool_zfs_acl }} default'
   when: lxd_zfs_acl_status is defined and lxd_zfs_acl_status.changed
-
-- name: processes
-  shell: ps -ef
-  register: ps
-
-- debug:
-    var: ps

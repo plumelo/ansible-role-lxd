@@ -8,7 +8,7 @@ script:
   - sudo pip install ansible
   - sudo ansible-playbook -i tests/inventory -vvvv tests/test.yml
   - >
-      sudo ansible-playbook -i tests/inventory -vvvv tests/test.yml --limit xenial
+      sudo ansible-playbook -i tests/inventory -vvvv tests/test.yml
       | grep -q 'changed=0.*failed=0'
       && (echo 'Idempotence test: pass' && exit 0)
       || (echo 'Idempotence test: fail' && exit 1)

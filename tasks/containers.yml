@@ -21,7 +21,7 @@
   become_user: '{{ item.become_user | default(omit) }}'
   with_items: '{{ lxd_containers }}'
   register: 'lxd_containers_status'
-  changed_when: item.state|default('started') !== lxd_containers_status.old_state
+  changed_when: item.state|default('started') != lxd_containers_status.old_state
 
 - debug:
     var: lxd_containers_status

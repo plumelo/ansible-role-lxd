@@ -5,7 +5,7 @@ language: python
 python:
   - "2.7"
 script:
-  - pip install ansible
+  - sudo pip install ansible
   - sudo ansible-playbook -i tests/inventory -vvvv tests/test.yml
   - >
       sudo ansible-playbook -i tests/inventory -vvvv tests/test.yml --limit xenial

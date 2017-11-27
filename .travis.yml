@@ -7,6 +7,7 @@ python:
 script:
   - sudo pip install ansible
   - sudo ansible-playbook -i tests/inventory -vvvv tests/test.yml
+  - sudo ansible-playbook -i tests/inventory -vvvv tests/test.yml
   - >
       sudo ansible-playbook -i tests/inventory -vvvv tests/test.yml
       | grep -q 'changed=0.*failed=0'

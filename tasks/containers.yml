@@ -3,8 +3,8 @@
 - name: Test lxd
   shell: lxc list
   become: true
-  become_method: su
-  become_flags: '-g lxd'
+  become_method: 'su'
+  become_flags: '-l'
   become_user: travis
 
 - name: Create containers

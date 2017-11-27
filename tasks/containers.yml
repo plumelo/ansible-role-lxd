@@ -3,7 +3,7 @@
 - name: Test lxd
   shell: lxc list
   become: true
-  become_method: sudo
+  become_method: su
   become_flags: '-g lxd'
   become_user: travis
 

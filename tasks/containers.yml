@@ -20,3 +20,8 @@
   become_flags: '{{ item.become_flags | default(omit) }}'
   become_user: '{{ item.become_user | default(omit) }}'
   with_items: '{{ lxd_containers }}'
+  register: 'lxd_containers_status'
+  changed_when: item.state|default('started') !== lxd_containers_status.old_state
+
+- debug:
+    var: lxd_containers_status

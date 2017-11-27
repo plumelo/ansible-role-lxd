@@ -5,7 +5,7 @@
   become: true
   become_method: su
   become_flags: '-g lxd'
-  become_user: root
+  become_user: travis
 
 - name: Create containers
   lxd_container:

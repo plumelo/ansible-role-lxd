@@ -1,10 +1,13 @@
 ---
 
-- include: install.yml
+- import_tasks: dependencies.yml
   tags: [lxd, lxd-install]
 
-- include: configure.yml
+- import_tasks: install.yml
+  tags: [lxd, lxd-install]
+
+- import_tasks: configure.yml
   tags: [lxd, lxd-configure]
 
-- include: containers.yml
+- import_tasks: containers.yml
   tags: [lxd, lxd-containers]

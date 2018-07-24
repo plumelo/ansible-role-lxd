@@ -15,6 +15,7 @@
     config: '{{ item.config | default(omit) }}'
     wait_for_ipv4_addresses: '{{ item.wait_for_ipv4_addresses | default(omit)}}'
     devices: '{{ item.devices | default(omit) }}'
+    url: '{{ item.url| default(lxd_default_url) }}'
   become: '{{ item.become | default(omit) }}'
   become_method: '{{ item.become_method | default(omit) }}'
   become_flags: '{{ item.become_flags | default(omit) }}'

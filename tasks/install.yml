@@ -1,13 +1,29 @@
 ---
-- name: Ensure APT LXD repository (stable)
-  apt_repository: repo='ppa:ubuntu-lxc/lxd-stable' update_cache='yes'
-  when: lxd_apt_stable_repo
 
-- name: Install LXD
-  package: name={{ item }} state=present
-  with_items: '{{ lxd_packages }}'
+- name: Ensure there is no  lxd installed from repo
+  apt:
+    name: '{{ item }}'
+    state: absent
+  with_items:
+    - lxd
+    - lxd-client
+
+- name: Create lxd group
+  group:
+    name: lxd
+    state: present
 
 - name: Add users to lxd group
-  user: name={{ item }} groups=lxd append=yes
+  user:
+    name: '{{ item }}'
+    groups: lxd
+    append: true
   with_items: '{{ lxd_users }}'
   register: lxd_group_users_status
+
+- name: Install LXD with snap
+  shell: snap install {{ item }}
+  with_items:
+    - lxd --channel=3.0
+  when: lxd_install == "true"
+  changed_when: false

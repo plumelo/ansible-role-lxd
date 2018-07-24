@@ -1,0 +1,10 @@
+---
+
+- name: Install dependencies
+  apt:
+    name: '{{ item }}'
+    update_cache: true
+  with_items:
+    - software-properties-common
+    - snapd
+    - zfsutils-linux

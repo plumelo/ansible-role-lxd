@@ -1,22 +1,23 @@
 ---
-lxd_apt_stable_repo: yes
-lxd_packages:
-  - lxd
-  - zfsutils-linux
+
+lxd_install: true
+
+lxd_default_url: unix:/var/snap/lxd/common/lxd/unix.socket
+
 lxd_users: []
 
-lxd_init: yes
+lxd_init: true
 
-#lxc init: default pool
+# lxc init: default pool
 lxd_default_pool_size: 39GB
 lxd_default_pool_driver: zfs
-lxd_default_pool_zfs_acl: 'off' #posixacl, noacl, off
+lxd_default_pool_zfs_acl: 'off'  # posixacl, noacl, off
 lxd_default_pool_config:
   size: '{{ lxd_default_pool_size }}'
   source: /var/lib/lxd/disks/default.img
   zfs.pool_name: default
 
-#lxd init: default bridge
+# lxd init: default bridge
 lxd_default_bridge_ipv4_address: 'auto'
 lxd_default_bridge_config:
   ipv4.nat: 'true'
@@ -48,4 +49,4 @@ lxd_config:
 # Add DNS servers to dhcp
 lxd_prepend_dns: []
 
-lxd_containters: []
+lxd_containers: []
